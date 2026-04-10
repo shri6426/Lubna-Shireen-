@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Lubna Shireen R – Data Science Enthusiast & ECE Student. Portfolio showcasing data analytics, AI, and digital innovation projects." />
+  <title>Lubna Shireen R – Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #080808;
+      --black2: #0f0f0f;
+      --black3: #161616;
+      --black4: #1e1e1e;
+      --mid: #2a2a2a;
+      --warm: #3a3a3a;
+      --accent: #c9a84c;
+      --accent-dim: #8a6e2f;
+      --accent-lt: #e6c97a;
+      --white: #f0ede8;
+      --white-pure: #ffffff;
+      --text-body: rgba(240,237,232,0.75);
+      --text-muted: rgba(240,237,232,0.38);
+      --radius: 1px;
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+    }
+
+    body {
+      font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4rem;
+      height: 64px;
+      background: rgba(8,8,8,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      text-decoration: none;
+      position: relative;
+    }
+    .nav-logo::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width var(--transition);
+    }
+    .nav-logo:hover::after { width: 100%; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ─── TICKER ──────────────────────────── */
+    .ticker-bar {
+      background: var(--accent);
+      overflow: hidden;
+      padding: 0.6rem 0;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-flex;
+      gap: 0;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-track span {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #080808;
+      padding: 0 2.5rem;
+    }
+    .ticker-track span.dot {
+      color: #080808;
+      opacity: 0.5;
+      padding: 0;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── HERO ────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      padding: 7rem 4rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 5rem;
+      align-items: center;
+      background: var(--black);
+      position: relative;
+    }
+    /* Large ghost text behind hero */
+    #hero::before {
+      content: 'LSR';
+      position: absolute;
+      right: -0.05em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(14rem, 22vw, 22rem);
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201,168,76,0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+    #hero > * { position: relative; z-index: 1; }
+
+    .hero-text {
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+
+    .hero-name em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent-lt);
+    }
+
+    .hero-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hero-title::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      color: var(--text-body);
+      font-weight: 300;
+      max-width: 440px;
+      line-height: 1.9;
+      margin-bottom: 3rem;
+      font-style: italic;
+      border-left: 2px solid var(--accent-dim);
+      padding-left: 1.2rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.8rem 2.2rem;
+      background: var(--accent);
+      color: #080808;
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border: 1px solid var(--accent);
+      transition: background var(--transition), color var(--transition), transform 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: var(--accent-lt);
+      border-color: var(--accent-lt);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.8rem 2.2rem;
+      background: transparent;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 1px solid rgba(240,237,232,0.2);
+      transition: border-color var(--transition), color var(--transition), transform 0.2s ease;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-photo {
+      animation: fadeUp 0.9s 0.15s ease both;
+    }
+
+    .photo-card {
+      position: relative;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(201,168,76,0.15), 0 40px 80px rgba(0,0,0,0.6);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      aspect-ratio: 3/4;
+      background: var(--black3);
+    }
+    /* Corner accent marks */
+    .photo-card::before,
+    .photo-card::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .photo-card::before {
+      top: 12px; left: 12px;
+      border-top: 1px solid var(--accent);
+      border-left: 1px solid var(--accent);
+    }
+    .photo-card::after {
+      bottom: 12px; right: 12px;
+      border-bottom: 1px solid var(--accent);
+      border-right: 1px solid var(--accent);
+    }
+
+    .photo-card:hover {
+      transform: translateY(-8px) rotate(-0.5deg);
+      box-shadow: 0 0 0 1px rgba(201,168,76,0.4), 0 60px 100px rgba(0,0,0,0.7);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%) contrast(1.05) brightness(0.88);
+      transition: filter 0.5s ease;
+    }
+    .photo-card:hover img {
+      filter: grayscale(0%) contrast(1.05) brightness(0.95);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.5rem 1.5rem 1.5rem;
+      background: linear-gradient(transparent, rgba(8,8,8,0.85));
+    }
+
+    .photo-overlay-name {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+    }
+
+    .photo-overlay-sub {
+      color: var(--accent);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+
+    /* ─── SECTIONS COMMON ─────────────────── */
+    section {
+      padding: 7rem 4rem;
+      background: var(--black);
+    }
+
+    section:nth-of-type(even) {
+      background: var(--black2);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-style: italic;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--white);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(201,168,76,0.15);
+    }
+
+    /* ─── ABOUT ───────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: var(--text-body);
+      font-weight: 300;
+      line-height: 2;
+      margin-bottom: 1.4rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .stat-card {
+      padding: 2rem;
+      background: var(--black2);
+      transition: background 0.3s ease;
+    }
+    .stat-card:hover {
+      background: var(--black3);
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* ─── SKILLS ──────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(201,168,76,0.08);
+    }
+
+    .skill-category {
+      padding: 2.5rem;
+      border: none;
+      background: var(--black2);
+      transition: background var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-category::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .skill-category:hover { background: var(--black3); }
+    .skill-category:hover::after { opacity: 1; }
+
+    .skill-cat-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-cat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: var(--white);
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .skill-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      color: var(--text-body);
+      font-weight: 300;
+    }
+
+    .skill-list li::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: var(--accent-dim);
+      flex-shrink: 0;
+    }
+
+    /* ─── EXPERIENCE ──────────────────────── */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: rgba(201,168,76,0.06);
+    }
+
+    .exp-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      padding: 2.5rem;
+      border: none;
+      background: var(--black);
+      transition: background var(--transition);
+      position: relative;
+    }
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: transparent;
+      transition: background var(--transition);
+    }
+    .exp-card:hover { background: var(--black3); }
+    .exp-card:hover::before { background: var(--accent); }
+
+    .exp-meta {}
+
+    .exp-company {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: var(--white);
+    }
+
+    .exp-period {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .exp-type {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.2rem 0.6rem;
+      background: rgba(201,168,76,0.06);
+    }
+
+    .exp-role {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .exp-content {
+      font-size: 0.9rem;
+    }
+
+    .exp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+      color: var(--white);
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .exp-bullets li {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      font-weight: 300;
+      padding-left: 1.4rem;
+      position: relative;
+      line-height: 1.8;
+    }
+
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.75em;
+      width: 8px;
+      height: 1px;
+      background: var(--accent-dim);
+    }
+
+    /* ─── LEADERSHIP ──────────────────────── */
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(201,168,76,0.08);
+    }
+
+    .leadership-card {
+      padding: 2.2rem 2.5rem;
+      background: var(--black2);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: background var(--transition);
+    }
+    .leadership-card:hover { background: var(--black3); }
+
+    .leader-index {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.2);
+      line-height: 1;
+      flex-shrink: 0;
+      padding-top: 0.1rem;
+    }
+
+    .leader-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: var(--white);
+    }
+
+    .leader-org {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ─── CERTIFICATIONS ──────────────────── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(201,168,76,0.08);
+    }
+
+    .cert-card {
+      padding: 2.2rem;
+      background: var(--black2);
+      transition: background var(--transition), transform 0.3s ease;
+      position: relative;
+    }
+    .cert-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .cert-card:hover { background: var(--black3); transform: translateY(-3px); }
+    .cert-card:hover::after { transform: scaleX(1); }
+
+    .cert-issuer {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .cert-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.4;
+    }
+
+    .cert-divider {
+      width: 24px;
+      height: 1px;
+      background: rgba(201,168,76,0.3);
+      margin-top: 1.4rem;
+    }
+
+    /* ─── CONTACT ─────────────────────────── */
+    #contact {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::before {
+      content: 'CONNECT';
+      position: absolute;
+      bottom: -0.15em;
+      right: -0.05em;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(8rem, 15vw, 16rem);
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201,168,76,0.05);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      position: relative;
+    }
+
+    .contact-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--white);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-intro em {
+      font-style: italic;
+      color: var(--accent-lt);
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding: 1.4rem 1.8rem;
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+      transition: background 0.3s ease;
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-item:hover { background: rgba(201,168,76,0.04); }
+
+    .contact-item-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .contact-item-value {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      font-weight: 300;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    a.contact-item-value:hover {
+      color: var(--white);
+    }
+
+    /* ─── FOOTER ──────────────────────────── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(201,168,76,0.1);
+      padding: 1.8rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .footer-copy {
+      font-size: 0.68rem;
+      color: rgba(240,237,232,0.15);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    /* ─── ANIMATIONS ──────────────────────── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── MOBILE MENU ─────────────────────── */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────── */
+    @media (max-width: 1024px) {
+      nav {
+        padding: 0 2rem;
+      }
+
+      section {
+        padding: 5rem 2rem;
+      }
+
+      #hero {
+        padding: 7rem 2rem 5rem;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero-photo {
+        max-width: 320px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .exp-card {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .cert-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(8,8,8,0.97);
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 1px solid rgba(201,168,76,0.15);
+        padding: 1rem 0;
+        backdrop-filter: blur(20px);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li a {
+        display: block;
+        padding: 0.8rem 2rem;
+        font-size: 0.82rem;
+        color: var(--text-body);
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .leadership-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    /* ─── CURSOR GLOW ────────────────────── */
+    .cursor-glow {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      will-change: transform;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">Lubna Shireen R.</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- TICKER -->
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <span>Data Science</span><span class="dot">—</span>
+      <span>AI & Machine Learning</span><span class="dot">—</span>
+      <span>Electronics & Communication</span><span class="dot">—</span>
+      <span>Data Analytics</span><span class="dot">—</span>
+      <span>Digital Innovation</span><span class="dot">—</span>
+      <span>Power BI</span><span class="dot">—</span>
+      <span>Python</span><span class="dot">—</span>
+      <span>NLP</span><span class="dot">—</span>
+      <span>Data Science</span><span class="dot">—</span>
+      <span>AI & Machine Learning</span><span class="dot">—</span>
+      <span>Electronics & Communication</span><span class="dot">—</span>
+      <span>Data Analytics</span><span class="dot">—</span>
+      <span>Digital Innovation</span><span class="dot">—</span>
+      <span>Power BI</span><span class="dot">—</span>
+      <span>Python</span><span class="dot">—</span>
+      <span>NLP</span><span class="dot">—</span>
+    </div>
+  </div>
+  <section id="hero">
+    <div class="hero-text">
+      <h1 class="hero-name">Lubna<br><em>Shireen R.</em></h1>
+      <p class="hero-title">Data Science Enthusiast &nbsp;|&nbsp; ECE Student</p>
+      <p class="hero-tagline">Blending data, technology, and creativity to build impactful solutions.</p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn-primary">View Experience</a>
+        <a href="#contact" class="btn-secondary">Contact</a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <div class="photo-card">
+        <img src="photos/photo1.jpeg" alt="Lubna Shireen R." class="photo-img" />
+        <div class="photo-overlay">
+          <div class="photo-overlay-name">Lubna Shireen R.</div>
+          <div class="photo-overlay-sub">ECE — Data Science</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Lubna Shireen R. is a B.Tech student in Electronics and Communication Engineering with a specialization in
+          Data Science at SRM Institute of Science and Technology, Vadapalani. She is driven by a strong commitment to
+          applying data intelligence in solving real-world problems.</p>
+        <p>Her academic and professional interests center around Artificial Intelligence, Data Analytics, and Digital
+          Innovation. She brings a rare combination of technical rigor and creative sensibility — evidenced through her
+          work in analytics, design leadership, and cross-functional internship roles.</p>
+        <p>With hands-on experience across sectors including aerospace, HR technology, and enterprise analytics, she
+          approaches challenges with precision, adaptability, and a collaborative mindset.</p>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat-card">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Internship Roles</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Leadership Positions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">SRM</div>
+          <div class="stat-label">IST Vadapalani</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category reveal">
+        <div class="skill-cat-label">Category 01</div>
+        <h3 class="skill-cat-title">Technical Skills</h3>
+        <ul class="skill-list">
+          <li>Python</li>
+          <li>Java</li>
+          <li>SQL</li>
+          <li>Power BI</li>
+          <li>AI Tools</li>
+          <li>Natural Language Processing</li>
+        </ul>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-label">Category 02</div>
+        <h3 class="skill-cat-title">Creative Skills</h3>
+        <ul class="skill-list">
+          <li>Canva</li>
+          <li>Content Writing</li>
+          <li>Media Editing</li>
+          <li>Social Media Management</li>
+        </ul>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-label">Category 03</div>
+        <h3 class="skill-cat-title">Soft Skills</h3>
+        <ul class="skill-list">
+          <li>Leadership</li>
+          <li>Communication</li>
+          <li>Team Collaboration</li>
+          <li>Problem Solving</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="experience-list">
+
+      <div class="exp-card reveal">
+        <div class="exp-meta">
+          <div class="exp-company">Memora Enterprises</div>
+          <div class="exp-period">2024</div>
+          <span class="exp-type">Internship</span>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Data Analyst Intern</div>
+          <h3 class="exp-title">Data Analysis &amp; Business Intelligence</h3>
+          <ul class="exp-bullets">
+            <li>Conducted data cleaning, transformation, and exploratory analysis on enterprise datasets using Python
+              and SQL.</li>
+            <li>Developed Power BI dashboards to surface actionable insights for internal stakeholders and
+              decision-makers.</li>
+            <li>Collaborated with cross-functional teams to identify data-driven opportunities for process optimization.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-meta">
+          <div class="exp-company">Zynvixs</div>
+          <div class="exp-period">2024</div>
+          <span class="exp-type">Internship</span>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">HR Intern</div>
+          <h3 class="exp-title">Human Resources &amp; Talent Operations</h3>
+          <ul class="exp-bullets">
+            <li>Supported end-to-end recruitment workflows including candidate screening, scheduling, and documentation.
+            </li>
+            <li>Assisted in onboarding processes and maintained structured records using HR management tools.</li>
+            <li>Contributed to internal communications and HR process documentation initiatives.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-meta">
+          <div class="exp-company">ION Aerospace India</div>
+          <div class="exp-period">2024</div>
+          <span class="exp-type">Internship</span>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Aviation Electronics Intern</div>
+          <h3 class="exp-title">Avionics &amp; Electronics Systems</h3>
+          <ul class="exp-bullets">
+            <li>Gained practical exposure to avionics systems and electronic subsystems in aerospace applications.</li>
+            <li>Assisted in testing, documentation, and quality evaluation of electronic components.</li>
+            <li>Worked alongside engineering teams on system integration and performance validation tasks.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-meta">
+          <div class="exp-company">ION Aerospace India</div>
+          <div class="exp-period">2024</div>
+          <span class="exp-type">Internship</span>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Social Media Marketing Intern</div>
+          <h3 class="exp-title">Digital Marketing &amp; Brand Communication</h3>
+          <ul class="exp-bullets">
+            <li>Planned and executed social media content strategies to enhance brand visibility across platforms.</li>
+            <li>Designed promotional materials using Canva, maintaining consistent visual identity standards.</li>
+            <li>Monitored engagement metrics and prepared performance reports to guide content decisions.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section id="leadership">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Leadership</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="leadership-grid">
+
+      <div class="leadership-card reveal">
+        <div class="leader-index">01</div>
+        <div>
+          <div class="leader-role">Creative Head</div>
+          <div class="leader-org">OSI Student Chapter</div>
+        </div>
+      </div>
+
+      <div class="leadership-card reveal">
+        <div class="leader-index">02</div>
+        <div>
+          <div class="leader-role">Head of Design</div>
+          <div class="leader-org">E-Chip Newsletter</div>
+        </div>
+      </div>
+
+      <div class="leadership-card reveal">
+        <div class="leader-index">03</div>
+        <div>
+          <div class="leader-role">Joint Head of Design</div>
+          <div class="leader-org">E-Chip Newsletter</div>
+        </div>
+      </div>
+
+      <div class="leadership-card reveal">
+        <div class="leader-index">04</div>
+        <div>
+          <div class="leader-role">Technical HR Team Lead</div>
+          <div class="leader-org">ION Aerospace India</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cert-grid">
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">Deloitte</div>
+        <div class="cert-name">Data Analytics Job Simulation</div>
+        <div class="cert-divider"></div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">Quantium</div>
+        <div class="cert-name">Data Analytics Job Simulation</div>
+        <div class="cert-divider"></div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">Amazon Web Services</div>
+        <div class="cert-name">AWS Cloud Foundations</div>
+        <div class="cert-divider"></div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">Coursera</div>
+        <div class="cert-name">Machine Learning For All</div>
+        <div class="cert-divider"></div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">LinkedIn Learning</div>
+        <div class="cert-name">SQL for Data Analytics</div>
+        <div class="cert-divider"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header reveal">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="contact-intro">Open to internships, collaborations, and <em>meaningful opportunities.</em></p>
+        <a href="mailto:lubnashireenr@gmail.com" class="btn-primary">Send an Email</a>
+      </div>
+      <div class="contact-items reveal">
+        <div class="contact-item">
+          <span class="contact-item-label">Email</span>
+          <a href="mailto:lubnashireenr@gmail.com" class="contact-item-value">lubnashireenr@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.08 6.08l1.36-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Phone
+          </span>
+          <a href="tel:+919566257145" class="contact-item-value">+91 9566257145</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Location
+          </span>
+          <span class="contact-item-value">Chennai, Tamil Nadu, India</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
+          </span>
+          <a href="https://www.linkedin.com/in/lubnashireenr/" target="_blank" rel="noopener noreferrer"
+            class="contact-item-value">www.linkedin.com/in/lubnashireenr</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Lubna Shireen R.</span>
+    <span class="footer-copy">Powered by Mech Streck</span>
+    <a href="https://www.linkedin.com/in/lubnashireenr/" target="_blank" rel="noopener noreferrer" class="footer-link"
+      aria-label="LinkedIn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect x="2" y="9" width="4" height="12" />
+        <circle cx="4" cy="4" r="2" />
+      </svg>
+    </a>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Cursor glow
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+    let mx = 0, my = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function animGlow() {
+      cx += (mx - cx) * 0.08;
+      cy += (my - cy) * 0.08;
+      glow.style.left = cx + 'px';
+      glow.style.top  = cy + 'px';
+      requestAnimationFrame(animGlow);
+    })();
+
+    // Nav active state on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navAs = document.querySelectorAll('.nav-links a');
+    const scrollSpy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navAs.forEach(a => a.style.color = '');
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.style.color = 'var(--accent)';
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => scrollSpy.observe(s));
+  </script>
+</body>
+
+</html>
